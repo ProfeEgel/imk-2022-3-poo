@@ -73,6 +73,21 @@ namespace PooBasics
 
     internal class Program
     {
+        static List<Box> FilterBoxesByWidth(List<Box> boxes, int width)
+        {
+            List<Box> filteredBoxes = new List<Box>();
+
+            foreach (Box box in boxes)
+            {
+                if (box.Width == width)
+                {
+                    filteredBoxes.Add(box);
+                }
+            }
+
+            return filteredBoxes;
+        }
+
         static void Main(string[] args)
         {
             List<Box> boxes = new List<Box>();
@@ -83,6 +98,32 @@ namespace PooBasics
             boxes.Add(new Box(3));
             boxes.Add(new Box(3, 5, 1));
             boxes.Add(new Box());
+
+            // *****************************
+            // funciones lambda
+
+            FilterBoxesByWidth(boxes, 3).ForEach(b =>
+                Console.WriteLine($"({b.Width}, {b.Length}, {b.Height})")
+            );
+
+            Console.WriteLine();
+
+            boxes.Sort((a, b) => a.Volume.CompareTo(b.Volume));
+            FilterBoxesByWidth(boxes, 3).ForEach(b =>
+                Console.WriteLine($"({b.Width}, {b.Length}, {b.Height})")
+            );
+
+            //foreach (Box box in FilterBoxesByWidth(boxes, 3))
+            //{
+            //    Console.WriteLine($"({box.Width}, {box.Length}, {box.Height})");
+            //}
+
+
+
+            // funciones lambda
+            // *****************************
+
+            Console.WriteLine();
 
             int totalVolume = 0;
             for (int i = 0; i < boxes.Count; i++)
