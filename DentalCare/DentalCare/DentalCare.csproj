@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Agenda.cs" />
     <Compile Include="Appointment.cs" />
+    <Compile Include="AppointmentWithInfo.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="EasyFile.cs" />
     <Compile Include="Patient.cs" />
