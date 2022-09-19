@@ -71,12 +71,56 @@ namespace DentalCare
                 switch (option)
                 {
                     case 1:
-                        List<AppointmentWithInfo> list = agenda.GetCitasPorPaciente();
+                        {
+                            List<AppointmentWithInfo> result = agenda.GetCitasPorPaciente();
+
+                            Clear();
+                            WriteLine("**********************************************");
+                            WriteLine("*             CITAS POR PACIENTE             *");
+                            WriteLine("**********************************************");
+                            WriteLine();
+
+                            if (result.Count > 0)
+                            {
+                                result.ForEach(a =>
+                                    WriteLine($"{a.Patient.FullName}, {a.Day.Name}, {a.Time.Description}"));
+
+                                ReadKey();
+                            }
+                            else
+                            {
+                                WriteLine("\n¡No hay citas pendientes!");
+                                ReadKey();
+                            }
+                        }
                         break;
 
                     case 2:
-                        WriteLine("\n¡OPCIÓN NO IMPLEMENTADA!");
-                        ReadKey();
+                        {
+                            Clear();
+                            WriteLine("**********************************************");
+                            WriteLine("*               CITAS POR DIA                *");
+                            WriteLine("**********************************************");
+
+                            List<Day> days = agenda.GetDays();
+                            foreach (Day day in days)
+                            {
+                                WriteLine($"\n-- {day.Name} --");
+
+                                List<AppointmentWithInfo> result = agenda.GetCitasPorDia(day);
+                                if (result.Count > 0)
+                                {
+                                    result.ForEach(a =>
+                                        WriteLine($"\t{a.Time.Description}, {a.Patient.FullName}"));
+                                }
+                                else
+                                {
+                                    WriteLine("\t¡No hay citas pendientes!");
+                                }
+                            }
+
+                            ReadKey();
+                        }
                         break;
 
                     case 0:
