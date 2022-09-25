@@ -154,9 +154,122 @@ namespace DentalCare
                 switch (option)
                 {
                     case 1:
+                        {
+                            Clear();
+                            WriteLine("**********************************************");
+                            WriteLine("*               AGENDAR CITA                 *");
+                            WriteLine("**********************************************");
+                            WriteLine();
+
+                            Write("Introduce el ID del paciente: ");
+                            int patientId = Convert.ToInt32(ReadLine());
+
+                            if (agenda.ValidatePaciente(patientId))
+                            {
+                                if (!agenda.ValidateCitaPaciente(patientId))
+                                {
+                                    List<Day> availableDays = agenda.GetAvailableDays();
+
+                                    if (availableDays.Count > 0)
+                                    {
+                                        WriteLine("\n-- Días disponibles --");
+                                        for (int i = 0; i < availableDays.Count; i++)
+                                        {
+                                            WriteLine($"{i} - {availableDays[i].Name}");
+                                        }
+
+                                        Write("\nElige el día: ");
+                                        int dayIndex = Convert.ToInt32(ReadLine());
+
+                                        List<Time> availableTimes
+                                            = agenda.GetAvailableTimeByDay(availableDays[dayIndex].Id);
+
+                                        WriteLine("\n-- Horario disponible --");
+                                        for (int i = 0; i < availableTimes.Count; i++)
+                                        {
+                                            WriteLine($"{i} - {availableTimes[i].Description}");
+                                        }
+
+                                        Write("\nElige la hora: ");
+                                        int timeIndex = Convert.ToInt32(ReadLine());
+
+                                        Write("\n¿Agendar cita del paciente? [s/n]: ");
+                                        if (ReadLine().Trim().ToLower()[0] == 's')
+                                        {
+                                            agenda.AgendarCita(patientId,
+                                                               availableDays[dayIndex].Id,
+                                                               availableTimes[timeIndex].Id);
+
+                                            WriteLine("\n!Cita agendada con éxito!");
+                                            ReadKey();
+                                        }
+                                        else
+                                        {
+                                            WriteLine("\n!Operación cancelada!");
+                                            ReadKey();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        WriteLine("\n!No hay días disponibles para citas!");
+                                        ReadKey();
+                                    }
+                                }
+                                else
+                                {
+                                    WriteLine("\n!El paciente especificado ya tiene una asignada!");
+                                    ReadKey();
+                                }
+                            }
+                            else
+                            {
+                                WriteLine("\n!No existe un paciente con el ID especificado!");
+                                ReadKey();
+                            }
+                        }
+                        break;
+
                     case 2:
-                        WriteLine("\n¡OPCIÓN NO IMPLEMENTADA!");
-                        ReadKey();
+                        {
+                            Clear();
+                            WriteLine("**********************************************");
+                            WriteLine("*               CANCELAR CITA                *");
+                            WriteLine("**********************************************");
+                            WriteLine();
+
+                            Write("Introduce el ID del paciente: ");
+                            int patientId = Convert.ToInt32(ReadLine());
+
+                            if (agenda.ValidatePaciente(patientId))
+                            {
+                                if (agenda.ValidateCitaPaciente(patientId))
+                                {
+                                    Write("\n¿Cancelar cita del paciente? [s/n]: ");
+                                    if (ReadLine().Trim().ToLower()[0] == 's')
+                                    {
+                                        agenda.DeleteCitaPendiente(patientId);
+
+                                        WriteLine("\n!Cita cancelada con éxito!");
+                                        ReadKey();
+                                    }
+                                    else
+                                    {
+                                        WriteLine("\n!Operación cancelada!");
+                                        ReadKey();
+                                    }
+                                }
+                                else
+                                {
+                                    WriteLine("\n!El paciente especificado no posee una cita pendiente!");
+                                    ReadKey();
+                                }
+                            }
+                            else
+                            {
+                                WriteLine("\n!No existe un paciente con el ID especificado!");
+                                ReadKey();
+                            }
+                        }
                         break;
 
                     case 0:

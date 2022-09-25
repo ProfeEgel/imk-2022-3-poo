@@ -84,7 +84,56 @@ namespace DentalCare
         public void DeleteCitaPendiente(int patientId)
         {
             // Borrar cita de la lista appointments
+            appointments.RemoveAll(a => a.PatientId == patientId);
+
             // Actualizar archivo
+            EasyFile<Appointment>.SaveDataToFile("appointments.txt",
+                                             new string[] { "PatientId", "DayId", "TimeId" },
+                                             appointments);
+        }
+
+        public List<Day> GetAvailableDays()
+        {
+            List<Day> result = new List<Day>();
+            days.ForEach(d =>
+            {
+                if (schedules.Exists(s => s.DayId == d.Id))
+                {
+                    if (schedules.FindAll(s => s.DayId == d.Id).Count > 
+                        appointments.FindAll(a => a.DayId == d.Id).Count)
+                    {
+                        result.Add(d);
+                    }
+                    // else => no hay citas disponibles
+                }
+                // else => dentista no atiende ese día
+            });
+
+            return result;
+        }
+
+        public List<Time> GetAvailableTimeByDay(int dayId)
+        {
+            List<Time> result = new List<Time>();
+            schedules.FindAll(s => s.DayId == dayId).ForEach(s =>
+            {
+                if (!appointments.Exists(a => a.DayId == s.DayId && a.TimeId == s.TimeId))
+                {
+                    result.Add(times.Find(t => t.Id == s.TimeId));
+                }
+            });
+
+            return result;
+        }
+
+        public void AgendarCita(int patientId, int dayId, int timeId)
+        {
+            appointments.Add(new Appointment(patientId, dayId, timeId));
+
+            // Actualizar archivo
+            EasyFile<Appointment>.SaveDataToFile("appointments.txt",
+                                             new string[] { "PatientId", "DayId", "TimeId" },
+                                             appointments);
         }
     }
 }
