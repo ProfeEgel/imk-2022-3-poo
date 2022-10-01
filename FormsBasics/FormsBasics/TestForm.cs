@@ -13,12 +13,23 @@ namespace FormsBasics
     public partial class TestForm : Form
     {
         private int contador = 0;
+        private List<CheckBox> lstColors;
 
         public TestForm()
         {
             InitializeComponent();
 
             txtTest.Text = "Contador: 0";
+
+            lstColors = new List<CheckBox>();
+            lstColors.Add(chkRojo);
+            lstColors.Add(chkAzul);
+            lstColors.Add(chkVerde);
+            lstColors.Add(chkCyan);
+            lstColors.Add(chkMagenta);
+            lstColors.Add(chkAmarillo);
+
+            radMercurio.Checked = true;
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -48,6 +59,27 @@ namespace FormsBasics
 
                 default:
                     break;
+            }
+        }
+
+        private void chkRojo_CheckedChanged(object sender, EventArgs e)
+        {
+            List<string> lstColorsText = new List<string>();
+
+            lstColors
+                .FindAll(chk => chk.Checked)
+                .ForEach(chk => lstColorsText.Add(chk.Text));
+
+            txtColors.Text = String.Join("+", lstColorsText);
+        }
+
+        private void radMercurio_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = sender as RadioButton;
+
+            if (radio.Checked)
+            {
+                txtPlanets.Text = radio.Text;
             }
         }
     }
