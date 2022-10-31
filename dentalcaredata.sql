@@ -1,11 +1,11 @@
 ﻿
 -- DDL (database design)
-
-DROP TABLE IF EXISTS [days];
-DROP TABLE IF EXISTS [times];
-DROP TABLE IF EXISTS [schedules];
-DROP TABLE IF EXISTS [patients];
 DROP TABLE IF EXISTS [appointments];
+DROP TABLE IF EXISTS [patients];
+DROP TABLE IF EXISTS [schedules];
+DROP TABLE IF EXISTS [times];
+DROP TABLE IF EXISTS [days];
+
 
 CREATE TABLE [days](
   [id] INTEGER PRIMARY KEY, 
@@ -288,5 +288,48 @@ SELECT t.description, p.last_name||', '||p.first_name AS patient_full_name
 FROM appointments a
 INNER JOIN patients p ON (a.patient_id = p.id)
 INNER JOIN times t ON (a.time_id = t.id)
-WHERE day_id = 2
+WHERE day_id = 0
 ORDER BY t.id;
+
+-- AGENDAR CITAS
+
+-- lista de pacientes disponibles
+SELECT id, p.last_name||', '||p.first_name AS full_name
+FROM patients p
+WHERE p.id NOT IN(SELECT patient_id FROM appointments)
+ORDER BY full_name;
+
+-- lista de dias con horario disponible
+SELECT *
+FROM days
+WHERE id IN (SELECT DISTINCT day_id
+             FROM schedules
+             WHERE (day_id, time_id) NOT IN (SELECT day_id, time_id
+                                              FROM appointments));
+
+SELECT DISTINCT d.*
+FROM schedules s
+INNER JOIN days d ON (s.day_id = d.id) 
+WHERE (day_id, time_id) NOT IN (SELECT day_id, time_id
+                                FROM appointments);
+
+-- lista de horas disponibles según el día seleccionado
+SELECT t.*
+FROM schedules s
+INNER JOIN times t ON (s.time_id = t.id) 
+WHERE (day_id, time_id) NOT IN (SELECT day_id, time_id
+                                FROM appointments)
+       AND day_id = 3
+ORDER BY t.id;
+
+-- generar cita
+INSERT INTO appointments(patient_id, day_id, time_id) VALUES(0,0,0);
+
+-- CANCELAR CITAS
+
+SELECT id, p.last_name||', '||p.first_name AS full_name
+FROM patients p
+WHERE p.id IN(SELECT patient_id FROM appointments)
+ORDER BY full_name;
+
+DELETE FROM appointments WHERE patient_id = 917169;
