@@ -52,6 +52,12 @@
     <Compile Include="Appointment.cs" />
     <Compile Include="AppointmentByPatient.cs" />
     <Compile Include="AppointmentByTime.cs" />
+    <Compile Include="CitasAgendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitasAgendarForm.Designer.cs">
+      <DependentUpon>CitasAgendarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CitasPorPacienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="SQLiteDb.cs" />
     <Compile Include="SQLiteDbData.cs" />
     <Compile Include="Time.cs" />
+    <EmbeddedResource Include="CitasAgendarForm.resx">
+      <DependentUpon>CitasAgendarForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CitasPorPacienteForm.resx">
       <DependentUpon>CitasPorPacienteForm.cs</DependentUpon>
     </EmbeddedResource>

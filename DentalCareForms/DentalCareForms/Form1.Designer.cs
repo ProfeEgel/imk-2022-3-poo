@@ -87,7 +87,7 @@
             // citasPorPacienteToolStripMenuItem
             // 
             this.citasPorPacienteToolStripMenuItem.Name = "citasPorPacienteToolStripMenuItem";
-            this.citasPorPacienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.citasPorPacienteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.citasPorPacienteToolStripMenuItem.Text = "Citas por paciente...";
             this.citasPorPacienteToolStripMenuItem.Click += new System.EventHandler(this.citasPorPacienteToolStripMenuItem_Click);
             // 
@@ -103,13 +103,14 @@
             // agendarToolStripMenuItem
             // 
             this.agendarToolStripMenuItem.Name = "agendarToolStripMenuItem";
-            this.agendarToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.agendarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agendarToolStripMenuItem.Text = "Agendar...";
+            this.agendarToolStripMenuItem.Click += new System.EventHandler(this.agendarToolStripMenuItem_Click);
             // 
             // cancelarToolStripMenuItem
             // 
             this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
-            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cancelarToolStripMenuItem.Text = "Cancelar...";
             // 
             // ayudaToolStripMenuItem

@@ -44,5 +44,10 @@ namespace DentalCareForms
             var form = new CitasPorPacienteForm(conn);
             form.ShowDialog();
         }
+
+        private void agendarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
