@@ -42,6 +42,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbDays = new System.Windows.Forms.ComboBox();
             this.dgvAppointments = new System.Windows.Forms.DataGridView();
+            this.TimeDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +57,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(402, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(419, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,7 +72,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -87,6 +89,7 @@
             this.citasPorPacienteToolStripMenuItem.Name = "citasPorPacienteToolStripMenuItem";
             this.citasPorPacienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.citasPorPacienteToolStripMenuItem.Text = "Citas por paciente...";
+            this.citasPorPacienteToolStripMenuItem.Click += new System.EventHandler(this.citasPorPacienteToolStripMenuItem_Click);
             // 
             // citasToolStripMenuItem
             // 
@@ -100,13 +103,13 @@
             // agendarToolStripMenuItem
             // 
             this.agendarToolStripMenuItem.Name = "agendarToolStripMenuItem";
-            this.agendarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agendarToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.agendarToolStripMenuItem.Text = "Agendar...";
             // 
             // cancelarToolStripMenuItem
             // 
             this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
-            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.cancelarToolStripMenuItem.Text = "Cancelar...";
             // 
             // ayudaToolStripMenuItem
@@ -121,7 +124,7 @@
             // 
             this.acercaDeToolStripMenuItem.Enabled = false;
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
             // 
             // label1
@@ -153,20 +156,38 @@
             this.cmbDays.Name = "cmbDays";
             this.cmbDays.Size = new System.Drawing.Size(157, 26);
             this.cmbDays.TabIndex = 3;
+            this.cmbDays.SelectedIndexChanged += new System.EventHandler(this.cmbDays_SelectedIndexChanged);
             // 
             // dgvAppointments
             // 
             this.dgvAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAppointments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TimeDescription,
+            this.PatientFullName});
             this.dgvAppointments.Location = new System.Drawing.Point(78, 96);
             this.dgvAppointments.Name = "dgvAppointments";
-            this.dgvAppointments.Size = new System.Drawing.Size(301, 198);
+            this.dgvAppointments.Size = new System.Drawing.Size(329, 257);
             this.dgvAppointments.TabIndex = 4;
+            // 
+            // TimeDescription
+            // 
+            this.TimeDescription.DataPropertyName = "TimeDescription";
+            this.TimeDescription.HeaderText = "Hora";
+            this.TimeDescription.Name = "TimeDescription";
+            this.TimeDescription.ReadOnly = true;
+            // 
+            // PatientFullName
+            // 
+            this.PatientFullName.DataPropertyName = "PatientFullName";
+            this.PatientFullName.HeaderText = "Paciente";
+            this.PatientFullName.Name = "PatientFullName";
+            this.PatientFullName.ReadOnly = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 317);
+            this.ClientSize = new System.Drawing.Size(419, 365);
             this.Controls.Add(this.dgvAppointments);
             this.Controls.Add(this.cmbDays);
             this.Controls.Add(this.label2);
@@ -174,6 +195,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DentalCare App v1.0";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -199,6 +221,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbDays;
         private System.Windows.Forms.DataGridView dgvAppointments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PatientFullName;
     }
 }
 

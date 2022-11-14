@@ -284,7 +284,7 @@ FROM appointments a
 INNER JOIN days d ON (a.day_id = d.id)
 ORDER BY a.day_id;
 
-SELECT t.description, p.last_name||', '||p.first_name AS patient_full_name
+SELECT t.description AS time_description, p.last_name||', '||p.first_name AS patient_full_name
 FROM appointments a
 INNER JOIN patients p ON (a.patient_id = p.id)
 INNER JOIN times t ON (a.time_id = t.id)

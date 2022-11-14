@@ -22,14 +22,27 @@ namespace DentalCareForms
             conn = new SQLiteConn("dentalcaredata.db");
             conn.Open();
 
-            cmbDays.DataSource = conn.GetDays();
             cmbDays.DisplayMember = "Name";
             cmbDays.ValueMember = "Id";
+            cmbDays.DataSource = conn.GetDays();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void cmbDays_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int dayId = (int)cmbDays.SelectedValue;
+            var appointments = conn.GetAppointmentsByTime(dayId);
+            dgvAppointments.DataSource = appointments;
+        }
+
+        private void citasPorPacienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new CitasPorPacienteForm(conn);
+            form.ShowDialog();
         }
     }
 }

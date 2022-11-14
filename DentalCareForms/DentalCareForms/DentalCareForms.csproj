@@ -50,6 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs" />
+    <Compile Include="AppointmentByPatient.cs" />
+    <Compile Include="AppointmentByTime.cs" />
+    <Compile Include="CitasPorPacienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitasPorPacienteForm.Designer.cs">
+      <DependentUpon>CitasPorPacienteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Day.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -64,6 +72,9 @@
     <Compile Include="SQLiteDb.cs" />
     <Compile Include="SQLiteDbData.cs" />
     <Compile Include="Time.cs" />
+    <EmbeddedResource Include="CitasPorPacienteForm.resx">
+      <DependentUpon>CitasPorPacienteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
