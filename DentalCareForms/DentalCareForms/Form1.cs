@@ -47,7 +47,8 @@ namespace DentalCareForms
 
         private void agendarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var form = new CitasAgendarForm(conn);
+            form.ShowDialog();
         }
     }
 }

@@ -54,7 +54,7 @@
             this.cmbPacientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPacientes.FormattingEnabled = true;
             this.cmbPacientes.Location = new System.Drawing.Point(120, 37);
-            this.cmbPacientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbPacientes.Margin = new System.Windows.Forms.Padding(4);
             this.cmbPacientes.Name = "cmbPacientes";
             this.cmbPacientes.Size = new System.Drawing.Size(249, 26);
             this.cmbPacientes.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             this.btnAgendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgendar.Location = new System.Drawing.Point(151, 168);
-            this.btnAgendar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgendar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgendar.Name = "btnAgendar";
             this.btnAgendar.Size = new System.Drawing.Size(105, 32);
             this.btnAgendar.TabIndex = 2;
@@ -91,6 +91,7 @@
             this.cmbDias.Name = "cmbDias";
             this.cmbDias.Size = new System.Drawing.Size(249, 26);
             this.cmbDias.TabIndex = 1;
+            this.cmbDias.SelectedIndexChanged += new System.EventHandler(this.cmbDias_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -142,7 +143,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "CitasAgendarForm";
             this.Text = "Agendar citas";

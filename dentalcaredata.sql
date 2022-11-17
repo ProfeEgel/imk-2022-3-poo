@@ -294,10 +294,11 @@ ORDER BY t.id;
 -- AGENDAR CITAS
 
 -- lista de pacientes disponibles
-SELECT id, p.last_name||', '||p.first_name AS full_name
+--p.last_name||', '||p.first_name AS full_name
+SELECT id, p.first_name, p.last_name
 FROM patients p
 WHERE p.id NOT IN(SELECT patient_id FROM appointments)
-ORDER BY full_name;
+ORDER BY last_name, first_name;
 
 -- lista de dias con horario disponible
 SELECT *
